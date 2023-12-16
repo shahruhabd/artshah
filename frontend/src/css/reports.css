@@ -1,0 +1,8 @@
+.reports_wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.reports_content {
+    display: flex;
+}

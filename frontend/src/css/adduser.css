@@ -1,0 +1,8 @@
+.adduser_wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.adduser_content {
+    display: flex;
+}

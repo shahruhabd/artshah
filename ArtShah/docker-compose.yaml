@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: artshah
+      POSTGRES_USER: shah
+      POSTGRES_PASSWORD: artshah23KosZhanTomVan79
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_HOST=db  
+      - DATABASE_NAME=artshah
+      - DATABASE_USER=shah
+      - DATABASE_PASSWORD=artshah23KosZhanTomVan79
+      - DATABASE_PORT=5432
+
+volumes:
+  postgres_data:

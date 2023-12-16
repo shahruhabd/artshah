@@ -1,0 +1,19 @@
+.userlist_wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.userlist_content {
+    display: flex;
+    flex-grow: 1; /* Позволяет контенту занимать доступное пространство */
+    overflow-y: auto; /* Добавляет скролл, если содержимое превышает высоту */
+}
+
+.table-responsive {
+    flex-grow: 1; /* Позволяет таблице занимать доступное пространство */
+}
+
+.userlist_table_tr td {
+    height: 30px;
+}

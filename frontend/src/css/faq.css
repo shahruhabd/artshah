@@ -1,0 +1,8 @@
+.faq_wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.faq_content {
+    display: flex;
+}

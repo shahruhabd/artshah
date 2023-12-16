@@ -1,0 +1,33 @@
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 100px;
+}
+.login_form {
+    padding: 0 50px 0 0;
+    text-align: center;
+}
+.login_input {
+    border: 0;
+    border-bottom: 1px solid #000;
+    font-size: 18px;
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.input_btn {
+    border-radius: 10px;
+    border: 0;
+    background-color: #415F9D;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.input_btn:hover {
+    background-color: #556ea1;
+}
