@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from base.models import Calendar, Event, UserProfile
+from base.models import Calendar, Event, UserProfile, Client, Shipment
 from django.contrib.auth.models import User
 
 class CalendarSerializer(ModelSerializer):
@@ -39,3 +39,14 @@ class UserSerializer(ModelSerializer):
         profile.save()
 
         return instance
+    
+
+class ClientsSerializer(ModelSerializer):
+    class Meta:
+        model = Client
+        fields = ['id', 'name']
+
+class ShipmentSerializer(ModelSerializer):
+    class Meta:
+        model = Shipment
+        fields = ['id', 'sender', 'recipient', 'departure_address', 'delivery_address', 'departure_date', 'expected_delivery_date', 'status']

@@ -33,3 +33,33 @@ class Event(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.start_date} - {self.end_date})"
+    
+
+class Client(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class Shipment(models.Model):
+    IN_TRANSIT = 'в пути'
+    DELIVERED = 'доставлено'
+    DELAYED = 'задержано'
+
+    STATUS_CHOICES = [
+        (IN_TRANSIT, 'В пути'),
+        (DELIVERED, 'Доставлено'),
+        (DELAYED, 'Задержано'),
+    ]
+    
+    sender = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='sent_shipments')
+    recipient = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='received_shipments')
+    departure_address = models.CharField(max_length=255)
+    delivery_address = models.CharField(max_length=255)
+    departure_date = models.DateField()
+    expected_delivery_date = models.DateField()
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=IN_TRANSIT)
+
+    def __str__(self):
+        return f'Отгрузка от {self.departure_address} до {self.delivery_address}'

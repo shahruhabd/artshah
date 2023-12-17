@@ -23,7 +23,7 @@ function CalendarDetailPage() {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/events/");
+      const response = await fetch("http://0.0.0.0:8000/api/events/");
       const data = await response.json();
       const filteredEvents = data.filter(
         (event) => event.calendar == calendarId
@@ -43,11 +43,10 @@ function CalendarDetailPage() {
         start_date: startDate,
         end_date: endDate,
       };
-      const response = await fetch("http://localhost:8000/api/events/", {
+      const response = await fetch("http://0.0.0.0:8000/api/events/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Добавьте заголовок авторизации, если это необходимо
         },
         body: JSON.stringify(eventData),
       });
@@ -95,12 +94,11 @@ function CalendarDetailPage() {
   const handleSave = async (eventId) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/events/${eventId}/`,
+        `http://0.0.0.0:8000/api/events/${eventId}/`,
         {
           method: "PATCH", // Или 'PUT', в зависимости от вашего API
           headers: {
             "Content-Type": "application/json",
-            // Добавьте заголовок авторизации, если это необходимо
           },
           body: JSON.stringify({
             start_date: editedStartDate,
@@ -127,6 +125,14 @@ function CalendarDetailPage() {
       console.error("Ошибка при сохранении изменений события:", error);
     }
   };
+
+  function formatDate(isoString) {
+    const date = new Date(isoString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
 
   return (
     <div className="calendar_wrapper">
@@ -182,8 +188,8 @@ function CalendarDetailPage() {
                       </>
                     ) : (
                       <>
-                        <td>{event.start_date}</td>
-                        <td>{event.end_date}</td>
+                        <td>{formatDate(event.start_date)}</td>
+                        <td>{formatDate(event.end_date)}</td>
                         <td>{daysLeft > 0 ? `${daysLeft} д.` : "Истекло"}</td>
                         <td>
                           <button

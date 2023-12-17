@@ -1,6 +1,6 @@
 from django.urls import path 
 from . import views 
-from .views import MyTokenObtainPairView, CalendarViewSet, EventViewSet, UserListView, UserDetailView
+from .views import MyTokenObtainPairView, CalendarViewSet, EventViewSet, UserListView, UserDetailView, ClientViewSet, ShipmentViewSet
 from rest_framework.routers import DefaultRouter
 
 from rest_framework_simplejwt.views import (
@@ -10,6 +10,8 @@ from rest_framework_simplejwt.views import (
 router = DefaultRouter()
 router.register(r'calendars', CalendarViewSet)
 router.register(r'events', EventViewSet)
+router.register(r'clients', ClientViewSet)
+router.register(r'shipments', ShipmentViewSet)
 urlpatterns = [
     path('', views.getRoutes),
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),

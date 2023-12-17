@@ -11,20 +11,17 @@ const EventCreateModal = ({ calendarId, show, handleClose }) => {
   });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/events/', {
+      const response = await fetch('http://0.0.0.0:8000/api/events/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${authTokens}`, // Если требуется авторизация
         },
         body: JSON.stringify(eventData),
       });
 
       if (response.ok) {
         const newEvent = await response.json();
-        // Обработка созданного события, например, закрытие модального окна и обновление списка событий
         handleClose();
       } else {
         throw new Error('Ошибка при создании события');
@@ -68,7 +65,6 @@ const EventCreateModal = ({ calendarId, show, handleClose }) => {
               onChange={(e) => setEventData({ ...eventData, end_date: e.target.value })}
             />
           </Form.Group>
-          {/* Другие поля формы */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>Закрыть</Button>

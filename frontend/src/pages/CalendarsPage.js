@@ -17,7 +17,7 @@ const CalendarsPage = () => {
 
   const fetchCalendars = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/calendars/");
+      const response = await fetch("http://0.0.0.0:8000/api/calendars/");
       const data = await response.json();
       setCalendars(data);
     } catch (error) {
@@ -34,7 +34,7 @@ const CalendarsPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/api/calendars/", {
+      const response = await fetch("http://0.0.0.0:8000/api/calendars/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -12,7 +12,7 @@ function ProfilePage() {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/api/profile/", {
+        const response = await fetch("http://0.0.0.0:8000/api/profile/", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${authTokens.access}`,
@@ -49,7 +49,7 @@ function ProfilePage() {
     formData.append("photo", file);
 
     try {
-      const response = await fetch("http://localhost:8000/api/profile/", {
+      const response = await fetch("http://0.0.0.0:8000/api/profile/", {
         method: "POST",
         body: formData,
       });

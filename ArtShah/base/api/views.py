@@ -15,8 +15,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from ..permissions import IsAdminUser
 
-from .serializers import CalendarSerializer, EventSerializer, UserProfileSerializer, UserSerializer
-from base.models import Calendar, Event, UserProfile
+from .serializers import CalendarSerializer, EventSerializer, UserProfileSerializer, UserSerializer, ClientsSerializer, ShipmentSerializer
+from base.models import Calendar, Event, UserProfile, Client, Shipment
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -38,6 +38,8 @@ def getRoutes(request):
         '/api/calendars',
         '/api/events',
         '/api/profiles',
+        '/api/clients',
+        '/api/shipments',
     ]
 
     return Response(routes)
@@ -76,3 +78,11 @@ def delete_profile_photo(request, pk):
     userprofile = request.user.userprofile
     userprofile.photo.delete(save=True)
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientsSerializer
+
+class ShipmentViewSet(viewsets.ModelViewSet):
+    queryset = Shipment.objects.all()
+    serializer_class = ShipmentSerializer

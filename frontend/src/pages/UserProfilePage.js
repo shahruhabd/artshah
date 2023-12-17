@@ -16,7 +16,7 @@ function UserProfilePage() {
   useEffect(() => {
     async function fetchUserData() {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/profiles/${userId}/`,
+        `http://0.0.0.0:8000/api/profiles/${userId}/`,
         {
           method: "GET",
           headers: {
@@ -69,7 +69,7 @@ function UserProfilePage() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/profiles/${userId}/`,
+        `http://0.0.0.0:8000/api/profiles/${userId}/`,
         {
           method: "PATCH",
           headers: {
@@ -96,7 +96,7 @@ function UserProfilePage() {
   const handleDeletePhoto = async () => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/profiles/${userId}/delete_photo/`,
+        `http://0.0.0.0:8000/api/profiles/${userId}/delete_photo/`,
         {
           method: "POST",
           headers: {
